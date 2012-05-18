@@ -1,5 +1,7 @@
 100% pure Java, simple Windows registry utility.
 
+[![Build Status](https://secure.travis-ci.org/sarxos/win-registry.png?branch=master)](http://travis-ci.org/sarxos/win-registry)
+
 ## Maven Integration
 
 Binaries are not available in Maven central so you have to add this repository in your pom:
