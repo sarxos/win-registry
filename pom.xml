@@ -1,16 +1,17 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
+	
 	<groupId>com.sarxos</groupId>
 	<artifactId>win-registry</artifactId>
 	<version>0.1</version>
+	
 	<name>Windows Registry Utility</name>
 	<description>Windows registry utility</description>
 
 	<organization>
 		<name>Bartosz Firyn (SarXos)</name>
-		<url>http://www.sarxos.pl</url>
+		<url>https://github.com/sarxos</url>
 	</organization>
 
 	<repositories>
@@ -26,6 +27,22 @@
 			<url>ftp://ftp.sarxos.pl/maven2</url>
 		</repository>
 	</distributionManagement>
+
+	<scm>
+		<url>https://github.com/sarxos/win-registry</url>
+		<connection>git://github.com/sarxos/win-registry.git</connection>
+		<developerConnection>git@github.com:sarxos/win-registry.git</developerConnection>
+	</scm>
+
+	<issueManagement>
+		<url>https://github.com/sarxos/win-registry/issues</url>
+		<system>GitHub</system>
+	</issueManagement>
+
+	<ciManagement>
+		<system>Travis CI</system>
+		<url>http://travis-ci.org/#!/sarxos/win-registry</url>
+	</ciManagement>
 
 	<build>
 		<plugins>
