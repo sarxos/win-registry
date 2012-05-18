@@ -25,36 +25,46 @@ Add dependency to your project:
 </dependency>
 ```
 
+## Features
+
+* createKey(HKey, String)
+* deleteKey(HKey, String)
+* deleteValue(HKey, String, String)
+* readString(HKey, String, String)
+* readStringSubKeys(HKey, String)
+* readStringValues(HKey, String)
+* writeStringValue(HKey, String, String, String)
+
 ## Examples
+
+Get specific key value:
 
 ```java
 Win32Reg reg = Win32Reg.getInstance();
-		
-String value = reg.readString(HKey.HKLM, "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "ProductName");
+String branch = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion";
+String value = reg.readString(HKey.HKLM, branch, "ProductName");
 System.out.println("Windows Distribution = " + value);
-		
-List<String> keys = reg.readStringSubKeys(HKey.HKLM, "SOFTWARE\\Microsoft");
+```
+
+```
+Windows Distribution = Microsoft Windows XP
+```
+
+List keys under specific branch:
+
+```java
+Win32Reg reg = Win32Reg.getInstance();
+String branch = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Network";
+List<String> keys = reg.readStringSubKeys(HKey.HKLM, branch);
 for (String key : keys) {
 	System.out.println(key);
 }
 ```
 
-This should print:
-
 ```
-Active Setup
-AD7Metrics
-ADs
-Advanced INF Setup
-ALG
-AppEnv
-...
-... many other entries here
-...
-Windows NT
-Windows Portable Devices
-Windows Script Host
-Windows Scripting Host
-Windows Search
-Wisp
+Location Awareness
+Shared Parameters
+SMAddOns
+UMAddOns
+World Full Access Shared Parameters
 ```
