@@ -4,7 +4,7 @@
 
 ## Maven Integration
 
-Binaries are not available in Maven central so you have to add this repository in your pom:
+Binaries are not available in Maven central so you have to add this repository in your pom ([browse repository](http://www.sarxos.pl/repo/maven2)):
 
 ```xml
 <repositories>
