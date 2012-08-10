@@ -10,8 +10,9 @@ import java.util.prefs.Preferences;
 
 /**
  * A set of methods used to operate on Windows registry. Those methods comes
- * from private Sun API from {@link WindowsPreferences} written by Konstantin
- * Kladko. Access method used here has been initially found by Tarun Elankath
+ * from private Sun API from <code>WindowsPreferences</code> written by
+ * Konstantin Kladko. Access method used here has been initially found by Tarun
+ * Elankath
  * (http://lenkite.blogspot.fr/2008/05/access-windows-registry-using-java.html).
  * 
  * @author Bartosz Firyn (sarxos)
