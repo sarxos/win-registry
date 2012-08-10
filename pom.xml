@@ -15,7 +15,7 @@
 	
 	<groupId>com.github.sarxos</groupId>
 	<artifactId>windows-registry-util</artifactId>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.1</version>
 	
 	<name>Windows Registry Utility</name>
 	<description>100% pure Java, simple Windows registry utility</description>
