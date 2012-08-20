@@ -65,7 +65,7 @@ public final class ReflectedMethods {
 	protected static Map<String, String> readStringValues(Preferences root, int hkey, String key) throws Exception {
 		int[] handles = keyOpen(root, hkey, key, HKeyAccess.READ);
 		int[] keyInfo = (int[]) invoke(QUERY_INFO_KEY, root, handles[0]);
-		int count = keyInfo[2]; // countc
+		int count = keyInfo[2]; // count
 		int maxlen = keyInfo[3]; // value length max
 		HashMap<String, String> results = new HashMap<String, String>();
 		for (int index = 0; index < count; index++) {
