@@ -29,7 +29,7 @@ Add dependency to your project:
 
 ## Limitations
 
-This toll can operate only on ```HKEY_CURRENT_USER``` and ```HKEY_LOCAL_MACHINE```.
+This tool can work with ```HKEY_CURRENT_USER``` and ```HKEY_LOCAL_MACHINE``` only.
 
 ## License
 
