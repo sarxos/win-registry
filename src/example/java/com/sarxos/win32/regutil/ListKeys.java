@@ -7,6 +7,7 @@ import com.github.sarxos.winreg.RegistryException;
 import com.github.sarxos.winreg.WindowsRegistry;
 
 
+
 /**
  * @author Bartosz Firyn (SarXos)
  */

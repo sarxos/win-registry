@@ -4,6 +4,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
+import com.github.sarxos.winreg.internal.RC;
+import com.github.sarxos.winreg.internal.ReflectedMethods;
+
 
 /**
  * Simple windows registry utility.

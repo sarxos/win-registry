@@ -16,6 +16,7 @@
 	<groupId>com.github.sarxos</groupId>
 	<artifactId>windows-registry-util</artifactId>
 	<version>0.2-SNAPSHOT</version>
+	<packaging>bundle</packaging>
 	
 	<name>Windows Registry Utility</name>
 	<description>100% pure Java, simple Windows registry utility</description>
@@ -186,6 +187,25 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>2.3.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-Name>${project.name}</Bundle-Name>
+						<Bundle-SymbolicName>${project.groupId}-${project.artifactId}-${project.version}</Bundle-SymbolicName>
+						<Import-Package>*</Import-Package>
+						<Private-Package>
+							com.github.sarxos.winreg.internal,
+						</Private-Package>
+						<Export-Package>
+							com.github.sarxos.winreg,
+						</Export-Package>
+					</instructions>
+				</configuration>
+			</plugin>			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>

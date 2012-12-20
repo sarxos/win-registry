@@ -1,4 +1,4 @@
-package com.github.sarxos.winreg;
+package com.github.sarxos.winreg.internal;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.prefs.Preferences;
+
+import com.github.sarxos.winreg.HKey;
 
 
 /**
@@ -44,25 +46,25 @@ public final class ReflectedMethods {
 		return method;
 	}
 
-	protected static int deleteValue(Preferences root, int hkey, String key, String value) throws Exception {
+	public static int deleteValue(Preferences root, int hkey, String key, String value) throws Exception {
 		int[] handles = keyOpen(root, hkey, key, HKeyAccess.ALL);
 		int rc = (Integer) invoke(DELETE_VALUE, root, handles[0], value);
 		keyClose(root, handles);
 		return rc;
 	}
 
-	protected static int deleteKey(Preferences root, int hkey, String key) throws Exception {
+	public static int deleteKey(Preferences root, int hkey, String key) throws Exception {
 		return (Integer) invoke(DELETE_KEY, root, hkey, key);
 	}
 
-	protected static String readString(Preferences root, int hkey, String key, String value) throws Exception {
+	public static String readString(Preferences root, int hkey, String key, String value) throws Exception {
 		int[] handles = keyOpen(root, hkey, key, HKeyAccess.READ);
 		byte[] valb = (byte[]) invoke(QUERY_VALUE_EX, root, handles[0], value);
 		keyClose(root, handles);
 		return (valb != null ? new String(valb).trim() : null);
 	}
 
-	protected static Map<String, String> readStringValues(Preferences root, int hkey, String key) throws Exception {
+	public static Map<String, String> readStringValues(Preferences root, int hkey, String key) throws Exception {
 		int[] handles = keyOpen(root, hkey, key, HKeyAccess.READ);
 		int[] keyInfo = (int[]) invoke(QUERY_INFO_KEY, root, handles[0]);
 		int count = keyInfo[2]; // count
@@ -78,7 +80,7 @@ public final class ReflectedMethods {
 		return results;
 	}
 
-	protected static List<String> readStringSubKeys(Preferences root, int hkey, String key) throws Exception {
+	public static List<String> readStringSubKeys(Preferences root, int hkey, String key) throws Exception {
 		int[] handles = keyOpen(root, hkey, key, HKeyAccess.READ);
 		int[] info = (int[]) invoke(QUERY_INFO_KEY, root, handles[0]);
 		int count = info[0]; // count
@@ -92,13 +94,13 @@ public final class ReflectedMethods {
 		return results;
 	}
 
-	protected static int[] createKey(Preferences root, int hkey, String key) throws Exception {
+	public static int[] createKey(Preferences root, int hkey, String key) throws Exception {
 		int[] handles = (int[]) invoke(CREATE_KEY_EX, root, hkey, key);
 		keyClose(root, handles);
 		return handles;
 	}
 
-	protected static void writeStringValue(Preferences root, int hkey, String key, String valueName, String value) throws Exception {
+	public static void writeStringValue(Preferences root, int hkey, String key, String valueName, String value) throws Exception {
 		int[] handles = keyOpen(root, hkey, key, HKeyAccess.ALL);
 		invoke(SET_VALUE_EX, root, handles[0], valueName, value);
 		keyClose(root, handles);
@@ -109,7 +111,7 @@ public final class ReflectedMethods {
 		for (int i = 0; i < args.length; i++) {
 			Object arg = args[i];
 			if (arg instanceof Integer) {
-				arguments[i] = (Integer) arg;
+				arguments[i] = arg;
 			} else if (arg instanceof String) {
 				arguments[i] = strToNativeBytes(arg.toString());
 			}

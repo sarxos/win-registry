@@ -1,4 +1,4 @@
-package com.github.sarxos.winreg;
+package com.github.sarxos.winreg.internal;
 
 public class RC {
 
