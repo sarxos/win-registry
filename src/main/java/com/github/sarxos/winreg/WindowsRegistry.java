@@ -1,6 +1,5 @@
 package com.github.sarxos.winreg;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
@@ -36,14 +35,11 @@ public class WindowsRegistry {
 	/**
 	 * Read a value from key and value name
 	 * 
-	 * @param hk HKEY
-	 * @param key key
-	 * @param valueName - value name
-	 * @return Value
-	 * 
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
+	 * @param hk the HKEY
+	 * @param key the key
+	 * @param valueName the value name
+	 * @return String value
+	 * @throws RegistryException when something is not right
 	 */
 	public String readString(HKey hk, String key, String valueName) throws RegistryException {
 		try {
@@ -56,12 +52,10 @@ public class WindowsRegistry {
 	/**
 	 * Read value(s) and value name(s) form given key
 	 * 
-	 * @param hk HKEY
-	 * @param key key
+	 * @param hk the HKEY
+	 * @param key the key
 	 * @return the value name(s) plus the value(s)
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
+	 * @throws RegistryException when something is not right
 	 */
 	public Map<String, String> readStringValues(HKey hk, String key) throws RegistryException {
 		try {
@@ -74,12 +68,10 @@ public class WindowsRegistry {
 	/**
 	 * Read the value name(s) from a given key
 	 * 
-	 * @param hk HKEY
-	 * @param key key
+	 * @param hk the HKEY
+	 * @param key the key
 	 * @return the value name(s)
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
+	 * @throws RegistryException when something is not right
 	 */
 	public List<String> readStringSubKeys(HKey hk, String key) throws RegistryException {
 		try {
@@ -92,11 +84,9 @@ public class WindowsRegistry {
 	/**
 	 * Create key in registry.
 	 * 
-	 * @param hk HKEY
-	 * @param key key
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
+	 * @param hk the HKEY
+	 * @param key the key
+	 * @throws RegistryException when something is not right
 	 */
 	public void createKey(HKey hk, String key) throws RegistryException {
 		int[] ret;
@@ -116,13 +106,11 @@ public class WindowsRegistry {
 	/**
 	 * Write a value in a given key/value name
 	 * 
-	 * @param hk HKEY to be used
-	 * @param key key to be written
-	 * @param valueName value name
-	 * @param value value
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
+	 * @param hk the HKEY to be used
+	 * @param key the key to be written
+	 * @param valueName the value name
+	 * @param value the value
+	 * @throws RegistryException when something is not right
 	 */
 	public void writeStringValue(HKey hk, String key, String valueName, String value) throws RegistryException {
 		try {
@@ -135,11 +123,9 @@ public class WindowsRegistry {
 	/**
 	 * Delete given key from registry.
 	 * 
-	 * @param hk HKEY
-	 * @param key key
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
+	 * @param hk the HKEY
+	 * @param key the key to be deleted
+	 * @throws RegistryException when something is not right
 	 */
 	public void deleteKey(HKey hk, String key) throws RegistryException {
 		int rc = -1;
@@ -156,12 +142,10 @@ public class WindowsRegistry {
 	/**
 	 * Delete value from given key/value name.
 	 * 
-	 * @param hk HKEY
-	 * @param key key
-	 * @param value
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
-	 * @throws InvocationTargetException
+	 * @param hk the HKEY
+	 * @param key the key
+	 * @param value the value
+	 * @throws RegistryException when something is not right
 	 */
 	public void deleteValue(HKey hk, String key, String value) throws RegistryException {
 		int rc = -1;
