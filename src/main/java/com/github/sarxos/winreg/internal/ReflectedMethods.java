@@ -1,5 +1,6 @@
 package com.github.sarxos.winreg.internal;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -132,11 +133,16 @@ public final class ReflectedMethods {
 	}
 
 	private static byte[] strToNativeBytes(String str) {
-		byte[] result = new byte[str.length() + 1];
-		for (int i = 0; i < str.length(); i++) {
-			result[i] = (byte) str.charAt(i);
+		String nativeEncoding = System.getProperty("sun.jnu.encoding", "ISO-8859-1");
+		byte[] bytes = null;
+		try {
+			bytes = str.getBytes(nativeEncoding);
+		} catch (UnsupportedEncodingException e) {
+			bytes = str.getBytes();
 		}
-		result[str.length()] = 0;
+		byte[] result = new byte[bytes.length + 1];
+		System.arraycopy(bytes, 0, result, 0, bytes.length);
+		result[bytes.length] = 0;
 		return result;
 	}
 
