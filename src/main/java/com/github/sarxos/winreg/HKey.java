@@ -2,6 +2,7 @@ package com.github.sarxos.winreg;
 
 import java.util.prefs.Preferences;
 
+import com.github.sarxos.winreg.internal.WindowsPreferencesBuilder;
 
 /**
  * HKEY
@@ -11,6 +12,12 @@ import java.util.prefs.Preferences;
 public enum HKey {
 
 	/**
+	 * HKEY_CLASSES_ROOT
+	 */
+	HKCR(WindowsPreferencesBuilder.HKCR_VALUE, WindowsPreferencesBuilder
+			.getHKCR()),
+
+	/**
 	 * HKEY_CURRENT_USER
 	 */
 	HKCU(0x80000001, Preferences.userRoot()),
@@ -18,7 +25,18 @@ public enum HKey {
 	/**
 	 * HKEY_LOCAL_MACHINE
 	 */
-	HKLM(0x80000002, Preferences.systemRoot());
+	HKLM(0x80000002, Preferences.systemRoot()),
+
+	/**
+	 * HKEY_USERS
+	 */
+	HKU(WindowsPreferencesBuilder.HKU_VALUE, WindowsPreferencesBuilder.getHKU()),
+
+	/**
+	 * HKEY_CURRENT_CONFIG
+	 */
+	HKCC(WindowsPreferencesBuilder.HKCC_VALUE, WindowsPreferencesBuilder
+			.getHKCC());
 
 	private int hex = 0;
 
