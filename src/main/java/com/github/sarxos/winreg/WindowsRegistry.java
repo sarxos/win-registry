@@ -42,8 +42,22 @@ public class WindowsRegistry {
 	 * @throws RegistryException when something is not right
 	 */
 	public String readString(HKey hk, String key, String valueName) throws RegistryException {
+		return readString(hk, key, valueName, null);
+	}
+	
+	/**
+	 * Read a value from key and value name
+	 * 
+	 * @param hk the HKEY
+	 * @param key the key
+	 * @param valueName the value name
+	 * @param charsetName which charset to use
+	 * @return String value
+	 * @throws RegistryException when something is not right
+	 */
+	public String readString(HKey hk, String key, String valueName, String charsetName) throws RegistryException {
 		try {
-			return ReflectedMethods.readString(hk.root(), hk.hex(), key, valueName);
+			return ReflectedMethods.readString(hk.root(), hk.hex(), key, valueName, charsetName);
 		} catch (Exception e) {
 			throw new RegistryException("Cannot read " + valueName + " value from key " + key, e);
 		}
@@ -58,8 +72,21 @@ public class WindowsRegistry {
 	 * @throws RegistryException when something is not right
 	 */
 	public Map<String, String> readStringValues(HKey hk, String key) throws RegistryException {
+		return readStringValues(hk, key, null);
+	}
+
+	/**
+	 * Read value(s) and value name(s) form given key
+	 * 
+	 * @param hk the HKEY
+	 * @param key the key
+	 * @param charsetName which charset to use
+	 * @return the value name(s) plus the value(s)
+	 * @throws RegistryException when something is not right
+	 */
+	public Map<String, String> readStringValues(HKey hk, String key, String charsetName) throws RegistryException {
 		try {
-			return ReflectedMethods.readStringValues(hk.root(), hk.hex(), key);
+			return ReflectedMethods.readStringValues(hk.root(), hk.hex(), key, charsetName);
 		} catch (Exception e) {
 			throw new RegistryException("Cannot read values from key " + key, e);
 		}
@@ -74,8 +101,21 @@ public class WindowsRegistry {
 	 * @throws RegistryException when something is not right
 	 */
 	public List<String> readStringSubKeys(HKey hk, String key) throws RegistryException {
+		return readStringSubKeys(hk, key, null);
+	}
+
+	/**
+	 * Read the value name(s) from a given key
+	 * 
+	 * @param hk the HKEY
+	 * @param key the key
+	 * @param charsetName which charset to use
+	 * @return the value name(s)
+	 * @throws RegistryException when something is not right
+	 */
+	public List<String> readStringSubKeys(HKey hk, String key, String charsetName) throws RegistryException {
 		try {
-			return ReflectedMethods.readStringSubKeys(hk.root(), hk.hex(), key);
+			return ReflectedMethods.readStringSubKeys(hk.root(), hk.hex(), key, charsetName);
 		} catch (Exception e) {
 			throw new RegistryException("Cannot read sub keys from key " + key, e);
 		}

@@ -36,6 +36,8 @@ public final class ReflectedMethods {
 	private static final Method DELETE_VALUE = setupMethod("WindowsRegDeleteValue", new Class[] { IC, BAC });
 	private static final Method DELETE_KEY = setupMethod("WindowsRegDeleteKey", new Class<?>[] { IC, BAC });
 
+	private static final String NATIVE_ENCODING = System.getProperty("sun.jnu.encoding", null);
+
 	private static Method setupMethod(String name, Class<?>[] args) {
 		Method method = null;
 		try {
@@ -58,14 +60,14 @@ public final class ReflectedMethods {
 		return (Integer) invoke(DELETE_KEY, root, hkey, key);
 	}
 
-	public static String readString(Preferences root, int hkey, String key, String value) throws Exception {
+	public static String readString(Preferences root, int hkey, String key, String value, String charsetName) throws Exception {
 		int[] handles = keyOpen(root, hkey, key, HKeyAccess.READ);
 		byte[] valb = (byte[]) invoke(QUERY_VALUE_EX, root, handles[0], value);
 		keyClose(root, handles);
-		return (valb != null ? new String(valb).trim() : null);
+		return strFromNativeBytes(valb, charsetName);
 	}
 
-	public static Map<String, String> readStringValues(Preferences root, int hkey, String key) throws Exception {
+	public static Map<String, String> readStringValues(Preferences root, int hkey, String key, String charsetName) throws Exception {
 		int[] handles = keyOpen(root, hkey, key, HKeyAccess.READ);
 		int[] keyInfo = (int[]) invoke(QUERY_INFO_KEY, root, handles[0]);
 		int count = keyInfo[2]; // count
@@ -73,15 +75,15 @@ public final class ReflectedMethods {
 		HashMap<String, String> results = new HashMap<String, String>();
 		for (int index = 0; index < count; index++) {
 			byte[] name = (byte[]) invoke(ENUM_VALUE, root, handles[0], index, maxlen + 1);
-			String strName = new String(name);
-			String value = readString(root, hkey, key, strName);
+			String strName = strFromNativeBytes(name, charsetName);
+			String value = readString(root, hkey, key, strName, charsetName);
 			results.put(strName.trim(), value);
 		}
 		keyClose(root, handles);
 		return results;
 	}
 
-	public static List<String> readStringSubKeys(Preferences root, int hkey, String key) throws Exception {
+	public static List<String> readStringSubKeys(Preferences root, int hkey, String key, String charsetName) throws Exception {
 		int[] handles = keyOpen(root, hkey, key, HKeyAccess.READ);
 		int[] info = (int[]) invoke(QUERY_INFO_KEY, root, handles[0]);
 		int count = info[0]; // count
@@ -89,7 +91,7 @@ public final class ReflectedMethods {
 		List<String> results = new ArrayList<String>();
 		for (int index = 0; index < count; index++) {
 			byte[] name = (byte[]) invoke(ENUM_KEY_EX, root, handles[0], index, maxlen + 1);
-			results.add(new String(name).trim());
+			results.add(strFromNativeBytes(name, charsetName));
 		}
 		keyClose(root, handles);
 		return results;
@@ -133,17 +135,32 @@ public final class ReflectedMethods {
 	}
 
 	private static byte[] strToNativeBytes(String str) {
-		String nativeEncoding = System.getProperty("sun.jnu.encoding", "ISO-8859-1");
 		byte[] bytes = null;
 		try {
-			bytes = str.getBytes(nativeEncoding);
-		} catch (UnsupportedEncodingException e) {
+			bytes = str.getBytes(NATIVE_ENCODING);
+		} catch (Exception e) {
 			bytes = str.getBytes();
 		}
 		byte[] result = new byte[bytes.length + 1];
 		System.arraycopy(bytes, 0, result, 0, bytes.length);
 		result[bytes.length] = 0;
 		return result;
+	}
+
+	private static String strFromNativeBytes(byte[] bytes, String charsetName) {
+		if (bytes == null) {
+			return null;
+		}
+		if (charsetName == null) {
+			charsetName = NATIVE_ENCODING;
+		}
+		String result;
+		try {
+			result = new String(bytes, charsetName);
+		} catch (Exception e) {
+			result = new String(bytes);
+		}
+		return result == null ? null : result.trim();
 	}
 
 	private ReflectedMethods() {
