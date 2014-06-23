@@ -23,17 +23,48 @@ Add dependency to your project:
 * deleteKey(HKey, String)
 * deleteValue(HKey, String, String)
 * readString(HKey, String, String)
+* readString(HKey, String, String, String)
 * readStringSubKeys(HKey, String)
+* readStringSubKeys(HKey, String, String)
 * readStringValues(HKey, String)
+* readStringValues(HKey, String, String)
 * writeStringValue(HKey, String, String, String)
 
-## Limitations
+## Example
 
-This tool can work with ```HKEY_CURRENT_USER``` and ```HKEY_LOCAL_MACHINE``` only.
+Read Windows distribution name:
+
+```java
+WindowsRegistry reg = WindowsRegistry.getInstance();
+String tree = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion";
+String value = reg.readString(HKey.HKLM, tree, "ProductName");
+System.out.println("Windows Distribution = " + value);
+```
+
+List keys under ```SOFTWARE\Microsoft\Windows NT\CurrentVersion\Network```:
+
+```java
+WindowsRegistry reg = WindowsRegistry.getInstance();
+String branch = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Network";
+List<String> keys = reg.readStringSubKeys(HKey.HKLM, branch);
+for (String key : keys) {
+	System.out.println(key);
+}
+```
+
+## Credits
+
+Great kudos and appreciation goes to:
+
+* Konstantin Kladko, who wrote WindowsPreferences class,
+* Tarun Elankath ([lenkite](https://github.com/lenkite)), who [described](http://lenkite.blogspot.fr/2008/05/access-windows-registry-using-java.html) method to hack the above class,
+* Yunqi Ouyang ([oyyq99999](https://github.com/oyyq99999)), who managed to [hack it](https://github.com/sarxos/win-registry/pull/1) to gain access to HKCR, HKU and HKCC.
+
+
 
 ## License
 
-Copyright (C) 2011 - 2012 Bartosz Firyn
+Copyright (C) 2011 - 2014 Bartosz Firyn and contributors
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

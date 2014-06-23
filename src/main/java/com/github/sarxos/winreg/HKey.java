@@ -1,42 +1,48 @@
 package com.github.sarxos.winreg;
 
+import static com.github.sarxos.winreg.internal.WindowsPreferencesBuilder.HKCC_VALUE;
+import static com.github.sarxos.winreg.internal.WindowsPreferencesBuilder.HKCR_VALUE;
+import static com.github.sarxos.winreg.internal.WindowsPreferencesBuilder.HKCU_VALUE;
+import static com.github.sarxos.winreg.internal.WindowsPreferencesBuilder.HKLM_VALUE;
+import static com.github.sarxos.winreg.internal.WindowsPreferencesBuilder.HKU_VALUE;
+
 import java.util.prefs.Preferences;
 
 import com.github.sarxos.winreg.internal.WindowsPreferencesBuilder;
 
+
 /**
- * HKEY
+ * HKEY enumeration.
  * 
- * @author Bartosz Firyn (SarXos)
+ * @author Bartosz Firyn (sarxos)
+ * @author Yunqi Ouyang (oyyq99999)
  */
 public enum HKey {
 
 	/**
 	 * HKEY_CLASSES_ROOT
 	 */
-	HKCR(WindowsPreferencesBuilder.HKCR_VALUE, WindowsPreferencesBuilder
-			.getHKCR()),
+	HKCR(HKCR_VALUE, WindowsPreferencesBuilder.getHKCR()),
 
 	/**
 	 * HKEY_CURRENT_USER
 	 */
-	HKCU(0x80000001, Preferences.userRoot()),
+	HKCU(HKCU_VALUE, Preferences.userRoot()),
 
 	/**
 	 * HKEY_LOCAL_MACHINE
 	 */
-	HKLM(0x80000002, Preferences.systemRoot()),
+	HKLM(HKLM_VALUE, Preferences.systemRoot()),
 
 	/**
 	 * HKEY_USERS
 	 */
-	HKU(WindowsPreferencesBuilder.HKU_VALUE, WindowsPreferencesBuilder.getHKU()),
+	HKU(HKU_VALUE, WindowsPreferencesBuilder.getHKU()),
 
 	/**
 	 * HKEY_CURRENT_CONFIG
 	 */
-	HKCC(WindowsPreferencesBuilder.HKCC_VALUE, WindowsPreferencesBuilder
-			.getHKCC());
+	HKCC(HKCC_VALUE, WindowsPreferencesBuilder.getHKCC());
 
 	private int hex = 0;
 

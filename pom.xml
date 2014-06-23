@@ -10,7 +10,6 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.repo.name>win-registry</project.repo.name>
 	</properties>
 	
 	<groupId>com.github.sarxos</groupId>
@@ -20,18 +19,18 @@
 	
 	<name>Windows Registry Utility</name>
 	<description>100% pure Java, simple Windows registry utility</description>
-	<url>https://github.com/sarxos/${project.repo.name}</url>
+	<url>https://github.com/sarxos/win-registry</url>
 	<inceptionYear>2011</inceptionYear>
 	
 	<organization>
-		<name>Bartosz Firyn (SarXos)</name>
+		<name>Bartosz Firyn (sarxos)</name>
 		<url>https://github.com/sarxos</url>
 	</organization>
 
 	<licenses>
 		<license>
 			<name>MIT License</name>
-			<url>https://raw.github.com/sarxos/${project.repo.name}/master/LICENSE.txt</url>
+			<url>https://raw.github.com/sarxos/win-registry/master/LICENSE.txt</url>
 			<distribution>repo,manual</distribution>
 		</license>
 	</licenses>
@@ -44,14 +43,14 @@
 	</distributionManagement>
 
 	<scm>
-		<connection>scm:git:git@github.com:sarxos/${project.repo.name}.git</connection>
-		<developerConnection>scm:git:git@github.com:sarxos/${project.repo.name}.git</developerConnection>
-		<url>git@github.com:sarxos/${project.repo.name}.git</url>
+		<connection>scm:git:git@github.com:sarxos/win-registry.git</connection>
+		<developerConnection>scm:git:git@github.com:sarxos/win-registry.git</developerConnection>
+		<url>git@github.com:sarxos/win-registry.git</url>
 	</scm>
 
 	<issueManagement>
 		<system>GitHub Issues Manager</system>
-		<url>https://github.com/sarxos/${project.repo.name}/issues</url>
+		<url>https://github.com/sarxos/win-registry/issues</url>
 	</issueManagement>
 	
 	<developers>
@@ -60,14 +59,19 @@
 			<name>Bartosz Firyn</name>
 			<email>bartoszfiryn@gmail.com</email>
 			<roles>
-				<role>Project Manager</role>
-				<role>Architect</role>
 				<role>Developer</role>
 			</roles>
-			<url>http://me.sarxos.pl/</url>
-			<organization>Bartosz Firyn (SarXos)</organization>
-			<organizationUrl>https://github.com/sarxos</organizationUrl>
+			<url>https://github.com/sarxos</url>
 			<timezone>+1</timezone>
+		</developer>
+		<developer>
+			<id>oyyq99999</id>
+			<name>Yunqi Ouyang</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<url>https://github.com/oyyq99999</url>
+			<timezone>+8</timezone>
 		</developer>
 	</developers>
 

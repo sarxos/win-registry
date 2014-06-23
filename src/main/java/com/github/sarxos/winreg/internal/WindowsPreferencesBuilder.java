@@ -1,9 +1,20 @@
 package com.github.sarxos.winreg.internal;
 
 import java.lang.reflect.Constructor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 
+
+/**
+ * Preferences builder to hack {@link Preferences} constructor and gain access
+ * to HKCR, HKU and HKCC.
+ * 
+ * @author Yunqi Ouyang (oyyq99999)
+ */
 public class WindowsPreferencesBuilder {
+
+	private static final Logger LOG = Logger.getLogger(WindowsPreferencesBuilder.class.getName());
 
 	private static final byte[] WINDOWS_ROOT_PATH = stringToByteArray("");
 	public static final int HKCR_VALUE = 0x80000000;
@@ -27,7 +38,7 @@ public class WindowsPreferencesBuilder {
 			hku = constructor.newInstance(HKU_VALUE, WINDOWS_ROOT_PATH);
 			hkcc = constructor.newInstance(HKCC_VALUE, WINDOWS_ROOT_PATH);
 		} catch (Exception e) {
-			// e.printStackTrace();
+			LOG.log(Level.SEVERE, "Cannot instantiate preferences", e);
 		}
 	}
 

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 
 import com.github.sarxos.winreg.HKey;
@@ -19,8 +20,11 @@ import com.github.sarxos.winreg.HKey;
  * (http://lenkite.blogspot.fr/2008/05/access-windows-registry-using-java.html).
  * 
  * @author Bartosz Firyn (sarxos)
+ * @author Yunqi Ouyang (oyyq99999)
  */
 public final class ReflectedMethods {
+
+	private static final Logger LOG = Logger.getLogger(ReflectedMethods.class.getName());
 
 	private static final Class<?> IC = int.class;
 	private static final Class<?> BAC = byte[].class;
@@ -157,7 +161,8 @@ public final class ReflectedMethods {
 		String result;
 		try {
 			result = new String(bytes, charsetName);
-		} catch (Exception e) {
+		} catch (UnsupportedEncodingException e) {
+			LOG.severe("Charset " + charsetName + " is not supported!");
 			result = new String(bytes);
 		}
 		return result == null ? null : result.trim();

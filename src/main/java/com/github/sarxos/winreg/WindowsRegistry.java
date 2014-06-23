@@ -11,6 +11,7 @@ import com.github.sarxos.winreg.internal.ReflectedMethods;
  * Simple windows registry utility.
  * 
  * @author Bartosz Firyn (sarxos)
+ * @author Yunqi Ouyang (oyyq99999)
  */
 public class WindowsRegistry {
 
@@ -44,7 +45,7 @@ public class WindowsRegistry {
 	public String readString(HKey hk, String key, String valueName) throws RegistryException {
 		return readString(hk, key, valueName, null);
 	}
-	
+
 	/**
 	 * Read a value from key and value name
 	 * 
