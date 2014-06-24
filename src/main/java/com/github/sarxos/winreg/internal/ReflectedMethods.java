@@ -1,6 +1,5 @@
 package com.github.sarxos.winreg.internal;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -161,8 +160,7 @@ public final class ReflectedMethods {
 		String result;
 		try {
 			result = new String(bytes, charsetName);
-		} catch (UnsupportedEncodingException e) {
-			LOG.severe("Charset " + charsetName + " is not supported!");
+		} catch (Exception e) {
 			result = new String(bytes);
 		}
 		return result == null ? null : result.trim();
