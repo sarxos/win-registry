@@ -13,7 +13,7 @@ Add dependency to your project:
 <dependency>
 	<groupId>com.github.sarxos</groupId>
 	<artifactId>windows-registry-util</artifactId>
-	<version>0.2</version>
+	<version>0.3</version>
 </dependency>
 ```
 
