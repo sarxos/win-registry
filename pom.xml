@@ -14,7 +14,7 @@
 	
 	<groupId>com.github.sarxos</groupId>
 	<artifactId>windows-registry-util</artifactId>
-	<version>0.3-SNAPSHOT</version>
+	<version>0.3</version>
 	<packaging>bundle</packaging>
 	
 	<name>Windows Registry Utility</name>
