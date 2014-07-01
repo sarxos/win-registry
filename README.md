@@ -30,6 +30,11 @@ Add dependency to your project:
 * readStringValues(HKey, String, String)
 * writeStringValue(HKey, String, String, String)
 
+## Limits
+
+1. It can read values of ```REG_SZ``` and ```REG_EXPAND_SZ``` only.
+2. It can read only these entries which user has permission to access.
+
 ## Example
 
 Read Windows distribution name:
