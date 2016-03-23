@@ -19,7 +19,7 @@
 	
 	<name>Windows Registry Utility</name>
 	<description>100% pure Java, simple Windows registry utility</description>
-	<url>https://github.com/sarxos/win-registry</url>
+	<url>https://github.com/ToBeKedge/win-registry</url>
 	<inceptionYear>2011</inceptionYear>
 	
 	<organization>
@@ -30,7 +30,7 @@
 	<licenses>
 		<license>
 			<name>MIT License</name>
-			<url>https://raw.github.com/sarxos/win-registry/master/LICENSE.txt</url>
+			<url>https://raw.github.com/ToBeKedge/win-registry/master/LICENSE.txt</url>
 			<distribution>repo,manual</distribution>
 		</license>
 	</licenses>
@@ -43,14 +43,14 @@
 	</distributionManagement>
 
 	<scm>
-		<connection>scm:git:git@github.com:sarxos/win-registry.git</connection>
-		<developerConnection>scm:git:git@github.com:sarxos/win-registry.git</developerConnection>
-		<url>git@github.com:sarxos/win-registry.git</url>
+		<connection>scm:git:git@github.com:ToBeKedge/win-registry.git</connection>
+		<developerConnection>scm:git:git@github.com:ToBeKedge/win-registry.git</developerConnection>
+		<url>git@github.com:ToBeKedge/win-registry.git</url>
 	</scm>
 
 	<issueManagement>
 		<system>GitHub Issues Manager</system>
-		<url>https://github.com/sarxos/win-registry/issues</url>
+		<url>https://github.com/ToBeKedge/win-registry/issues</url>
 	</issueManagement>
 	
 	<developers>
@@ -72,6 +72,15 @@
 			</roles>
 			<url>https://github.com/oyyq99999</url>
 			<timezone>+8</timezone>
+		</developer>
+		<developer>
+			<id>ToBeKedge</id>
+			<name>Cyril MICOUD</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<url>https://github.com/ToBeKedge</url>
+			<timezone>+1</timezone>
 		</developer>
 	</developers>
 
