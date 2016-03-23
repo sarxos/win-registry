@@ -17,7 +17,7 @@ import com.github.sarxos.winreg.HKey;
  * Konstantin Kladko. Access method used here has been initially found by Tarun
  * Elankath
  * (http://lenkite.blogspot.fr/2008/05/access-windows-registry-using-java.html).
- * 
+ *
  * @author Bartosz Firyn (sarxos)
  * @author Yunqi Ouyang (oyyq99999)
  */
@@ -75,13 +75,14 @@ public final class ReflectedMethods {
 		int[] handles = keyOpen(root, hkey, key, HKeyAccess.READ);
 		int[] info = (int[]) invoke(QUERY_INFO_KEY, root, handles[0]);
 
-		// info[0] = number of values which can be read
+		// info[0] = number of keys which can be read
 		// info[1] = ??
 		// info[2] = number of all value entries in given key
-		// info[3] = maximum string length from all the values
+		// info[3] = maximum string length from all the key names
+		// info[4] = maximum string length from all the values
 
-		int count = info[0];
-		int maxlen = info[3];
+		int count = info[2];
+		int maxlen = info[4];
 
 		HashMap<String, String> results = new HashMap<String, String>();
 		for (int index = 0; index < count; index++) {
@@ -101,8 +102,9 @@ public final class ReflectedMethods {
 
 		// info[0] = number of keys which can be read
 		// info[1] = ??
-		// info[2] = number of all keys in given key
+		// info[2] = number of all value entries in given key
 		// info[3] = maximum string length from all the key names
+		// info[4] = maximum string length from all the values
 
 		int count = info[0];
 		int maxlen = info[3];
