@@ -73,6 +73,15 @@
 			<url>https://github.com/oyyq99999</url>
 			<timezone>+8</timezone>
 		</developer>
+		<developer>
+			<id>ToBeKedge</id>
+			<name>Cyril MICOUD</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<url>https://github.com/ToBeKedge</url>
+			<timezone>+1</timezone>
+		</developer>
 	</developers>
 
 	<profiles>
