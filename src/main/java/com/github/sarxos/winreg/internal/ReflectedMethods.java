@@ -20,6 +20,7 @@ import com.github.sarxos.winreg.HKey;
  *
  * @author Bartosz Firyn (sarxos)
  * @author Yunqi Ouyang (oyyq99999)
+ * @author Cyril MICOUD (ToBeKedge)
  */
 public final class ReflectedMethods {
 
